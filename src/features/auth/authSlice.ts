@@ -35,7 +35,13 @@ const authSlice = createSlice({
     loading: false,
   },
   reducers: {
-    // Other reducers like logout, etc. can be added here
+    logout: (state) => {
+      state.user = null;
+      state.error = null;
+      state.loading = false;
+      localStorage.removeItem('user');
+      window.location.href = '/login';
+    },
   },
   extraReducers: {
     [`${login.pending}`]: (state) => {
@@ -45,13 +51,37 @@ const authSlice = createSlice({
     [`${login.fulfilled}`]: (state, action) => {
       state.loading = false;
       state.user = action.payload;
+      if(state.user) {
+        localStorage.setItem('user', JSON.stringify(state.user.user));
+        window.location.href = '/';
+      }
     },
     [`${login.rejected}`]: (state, action) => {
       state.loading = false;
       state.error = action.error.message;
     },
-  },
+    [`${register.pending}`]: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+
+    [`${register.fulfilled}`]: (state, action) => {
+      state.loading = false;
+      state.user = action.payload;
+      if(state.user) {
+        localStorage.setItem('user', JSON.stringify(state.user.user));
+        window.location.href = '/';
+      }
+    },
+    [`${register.rejected}`]: (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    }
+    }
+
 });
+
+export const { logout } = authSlice.actions;
 
 export default authSlice.reducer;
 

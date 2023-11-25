@@ -1,9 +1,9 @@
-\
 
-import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from "../../features/auth/authSlice";
 import { useState } from "react";
+import { Link } from 'react-router-dom';
+import loginImg from '../../assets/grim-reaper.jpg';
 
 function Register() {
 
@@ -26,9 +26,13 @@ function Register() {
       };
 
   return (
+    <div className='grid grid-cols-1 sm:grid-cols-2 h-full w-full'>
+    <div className='hidden sm:block'>
+        <img className='w-full h-full object-cover' src={loginImg} alt="" />
+    </div>
     <div className='bg-gray-800 flex flex-col justify-center  max-sm:text-sm'>
         {error && <p className='text-red-500'>{error}</p>}
-    <form className='max-w-[400px] w-full mx-auto rounded-lg bg-gray-900 p-2 px-8' onSubmit={handleRegister}>
+    <form className='max-w-[500px] w-full mx-auto rounded-lg bg-gray-900 p-2 px-8' onSubmit={handleRegister}>
         <h2 className='text-2xl dark:text-white font-bold text-center'>SIGN UP</h2>
         <div className='flex flex-col text-gray-400 py-1'>
             <label>Username</label>
@@ -51,6 +55,7 @@ function Register() {
         <button className='w-full my-5 py-2 bg-emerald-500 shadow-md shadow-teal-500/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg'>{loading ? 'loading...' : 'Sign Up'}</button>
         <p className='text-center text-gray-400 py-2 underline'>i already have an account ? <Link className='text-teal-500 text-lg' to="/login">Sign in</Link></p>
     </form>
+</div>
 </div>
   )
 }

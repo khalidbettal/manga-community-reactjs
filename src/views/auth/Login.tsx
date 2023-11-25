@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { useState } from 'react';
 import { useDispatch , useSelector} from 'react-redux';
 import { login } from "../../features/auth/authSlice";
+import loginImg from '../../assets/grim-reaper.jpg';
 
 
 
@@ -20,9 +21,13 @@ function Login() {
   return (
 
     <>
+     <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
+        <div className='hidden sm:block'>
+            <img className='w-full h-full object-cover' src={loginImg} alt="" />
+        </div>
           <div className='bg-gray-800 flex flex-col justify-center max-sm:text-sm'>
           {error && <p className='text-red-500'>{error}</p>}
-            <form className='max-w-[400px] w-full mx-auto rounded-lg bg-gray-900 p-8 px-8' onSubmit={handleLogin}>
+            <form className='max-w-[500px]  w-full mx-auto rounded-lg bg-gray-900 p-8 px-8' onSubmit={handleLogin}>
                 <h2 className='text-3xl dark:text-white font-bold text-center'>SIGN IN</h2>
                 <div className='flex flex-col text-gray-400 py-2'>
                     <label>Email</label>
@@ -47,6 +52,7 @@ function Login() {
                 <p className='text-center text-gray-400 mt-3 underline'>Don't have an account? <Link className='text-teal-500 text-lg' to="/register">Sign up</Link></p>
             </form>
         </div>
+    </div>
     </>
   )
 }

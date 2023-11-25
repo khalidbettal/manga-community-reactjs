@@ -1,18 +1,16 @@
 import { Outlet } from "react-router-dom"
-import loginImg from '../assets/grim-reaper.jpg'
+import Navbar from "./NavBar"
+import "../styles/Layouts.css"
 
 
 function GuestLayout() {
   return (
-   <>
-   <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
-        <div className='hidden sm:block'>
-            <img className='w-full h-full object-cover' src={loginImg} alt="" />
-        </div>
-
+   <div className="GuestLayout w-full h-screen ">
+        <Navbar />
+  
         <Outlet />
     </div>
-   </>
+  
   )
 }
 
